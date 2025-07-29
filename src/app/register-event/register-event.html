@@ -1,0 +1,29 @@
+<div class="container mt-5" style="max-width: 500px;">
+  <h2 class="mb-4 text-center">Register Event Booking</h2>
+  <form [formGroup]="bookingForm" (ngSubmit)="submitBooking()" class="bg-light p-4 rounded shadow-sm">
+    <div class="mb-3">
+      <label class="form-label">Booking ID</label>
+      <input type="number" formControlName="bookId" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">User ID</label>
+      <input type="number" formControlName="userId" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Event ID</label>
+      <input type="number" formControlName="eventId" class="form-control">
+    </div>
+
+    <!-- Optional success/error messages -->
+    <!-- <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div> -->
+
+    <button type="submit" class="btn btn-primary w-100">Register for Event</button>
+  </form>
+</div>
