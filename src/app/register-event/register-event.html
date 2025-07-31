@@ -1,29 +1,42 @@
-<div class="container mt-5" style="max-width: 500px;">
-  <h2 class="mb-4 text-center">Register Event Booking</h2>
-  <form [formGroup]="bookingForm" (ngSubmit)="submitBooking()" class="bg-light p-4 rounded shadow-sm">
-    <div class="mb-3">
-      <label class="form-label">Booking ID</label>
-      <input type="number" formControlName="bookId" class="form-control">
-    </div>
+<!-- Background styling -->
+<div class="min-vh-100 d-flex justify-content-center align-items-center" style="background: linear-gradient(to right, #83a4d4, #b6fbff);">
 
-    <div class="mb-3">
-      <label class="form-label">User ID</label>
-      <input type="number" formControlName="userId" class="form-control">
-    </div>
+  <!-- Form Card -->
+  <div class="container" style="max-width: 450px;">
+    <div class="glass-card p-4 rounded-4 shadow-lg">
+      <h3 class="text-center mb-4 fw-bold text-primary">📅 Register Event Booking</h3>
 
-    <div class="mb-3">
-      <label class="form-label">Event ID</label>
-      <input type="number" formControlName="eventId" class="form-control">
-    </div>
+      <!-- Alerts -->
+      <div *ngIf="successMessage" class="alert alert-success text-center" role="alert">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger text-center" role="alert">
+        {{ errorMessage }}
+      </div>
 
-    <!-- Optional success/error messages -->
-    <!-- <div *ngIf="errorMessage" class="alert alert-danger">
-      {{ errorMessage }}
-    </div>
-    <div *ngIf="successMessage" class="alert alert-success">
-      {{ successMessage }}
-    </div> -->
+      <!-- Form -->
+      <form [formGroup]="bookingForm" (ngSubmit)="submitBooking()">
+        <div class="mb-3">
+          <label class="form-label fw-semibold">👤 User ID</label>
+          <input type="number" formControlName="userId" class="form-control rounded-pill px-3" placeholder="Enter your User ID" required>
+        </div>
 
-    <button type="submit" class="btn btn-primary w-100">Register for Event</button>
-  </form>
+        <div class="mb-3">
+          <label class="form-label fw-semibold">🆔 Event ID</label>
+          <input type="number" formControlName="eventId" class="form-control rounded-pill px-3" placeholder="Enter Event ID" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 rounded-pill fw-bold mt-3">
+          🚀 Register for Event
+        </button>
+      </form>
+
+      <!-- Back Button -->
+      <div class="text-center mt-3">
+        <button class="btn btn-outline-secondary rounded-pill px-4" (click)="goBack()">
+          🔙 Back
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

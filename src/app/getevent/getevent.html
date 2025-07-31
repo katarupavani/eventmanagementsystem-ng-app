@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+<h3 class="text-center mt-5 text-gradient display-6 fw-bold">
+  <i class="bi bi-calendar-week me-2"></i>All Events
+</h3>
+
+<!-- Events Grid -->
+<div *ngIf="events.length > 0" class="container py-4">
+  <div class="row g-4">
+    <div class="col-md-6 col-lg-4" *ngFor="let event of events">
+      <div class="card h-100 shadow-lg border-0 rounded-4">
+        <div class="card-body p-4">
+          <h5 class="card-title text-primary mb-3">
+            <i class="bi bi-easel-fill me-2"></i>{{ event.eventName }}
+          </h5>
+
+          <ul class="list-unstyled small text-dark mb-3">
+            <li><strong>ID:</strong> {{ event.eventId }}</li>
+            <li><strong>Category:</strong> {{ event.category }}</li>
+            <li><strong>Description:</strong> {{ event.description }}</li>
+            <li><strong>Limit:</strong> {{ event.limit }}</li>
+            <li><strong>Location:</strong> {{ event.location }}</li>
+            <li><strong>Date:</strong> {{ event.date }}</li>
+            <li><strong>Start:</strong> {{ event.startTime }}</li>
+            <li><strong>End:</strong> {{ event.endTime }}</li>
+          </ul>
+
+          <div class="text-end">
+            <button class="btn btn-gradient btn-sm px-4" (click)="registerEvent()">
+              <i class="bi bi-check2-circle me-1"></i>Register
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- No Events Message -->
+<p *ngIf="events.length === 0 && successMessage === ''" class="text-center text-muted mt-5">
+  <i class="bi bi-exclamation-circle me-2"></i>No events available at the moment.
+</p>

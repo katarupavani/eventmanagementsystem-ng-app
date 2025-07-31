@@ -1,21 +1,21 @@
-/* Gradient text style */
 .text-gradient {
   background: linear-gradient(to right, #0dcaf0, #6f42c1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text; /* Added for non-webkit support */
-  color: transparent; /* Fallback */
 }
 
-/* Gradient button style */
 .btn-gradient {
   background: linear-gradient(to right, #0dcaf0, #6f42c1);
-  color: #fff;
+  color: white;
   border: none;
-  transition: background 0.3s ease;
+  transition: 0.3s ease-in-out;
 }
 
 .btn-gradient:hover {
   background: linear-gradient(to right, #0bb8dd, #5b35b0);
-  color: #fff;
+  transform: translateY(-1px);
+}
+
+.card {
+  border-radius: 1rem !important;
 }

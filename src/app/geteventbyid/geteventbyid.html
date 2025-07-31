@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+  <div class="glass-box p-5 shadow-lg rounded-5 mx-auto bg-light bg-opacity-75 border border-2 border-info" style="max-width: 650px; backdrop-filter: blur(10px);">
+    
+    <h2 class="text-center mb-4 text-gradient fw-bold display-6">
+      <i class="bi bi-search-heart-fill me-2"></i> Find Your Event
+    </h2>
+
+    <form [formGroup]="eventForm" (ngSubmit)="submitForm()" class="mb-4">
+      <div class="input-group input-group-lg">
+        <span class="input-group-text bg-info text-white rounded-start">
+          <i class="bi bi-hash"></i>
+        </span>
+        <input
+          type="number"
+          class="form-control border-info border-2"
+          formControlName="event_id"
+          placeholder="Enter Event ID"
+          required
+        />
+        <button
+          type="submit"
+          class="btn btn-info text-white fw-semibold px-4"
+          [disabled]="eventForm.invalid"
+        >
+          <i class="bi bi-send-check-fill"></i> Fetch
+        </button>
+      </div>
+    </form>
+
+    <div *ngIf="eventById" class="event-details p-4 rounded-4 shadow bg-white bg-opacity-90">
+      <h4 class="text-center fw-bold text-success mb-4">
+        <i class="bi bi-calendar2-check-fill me-2"></i>{{ eventById.eventName }}
+      </h4>
+
+      <div class="row g-3">
+        <div class="col-6"><i class="bi bi-hash text-danger"></i> <strong>ID:</strong> {{ eventById.eventId }}</div>
+        <div class="col-6"><i class="bi bi-folder-fill text-warning"></i> <strong>Category:</strong> {{ eventById.category }}</div>
+        <div class="col-12"><i class="bi bi-card-text text-secondary"></i> <strong>Description:</strong> {{ eventById.description }}</div>
+        <div class="col-6"><i class="bi bi-people-fill text-primary"></i> <strong>Limit:</strong> {{ eventById.limit }}</div>
+        <div class="col-6"><i class="bi bi-geo-alt-fill text-danger"></i> <strong>Location:</strong> {{ eventById.location }}</div>
+        <div class="col-6"><i class="bi bi-calendar-event text-info"></i> <strong>Date:</strong> {{ eventById.date }}</div>
+        <div class="col-6"><i class="bi bi-clock text-success"></i> <strong>Start:</strong> {{ eventById.startTime }}</div>
+        <div class="col-6"><i class="bi bi-clock-history text-success"></i> <strong>End:</strong> {{ eventById.endTime }}</div>
+      </div>
+    </div>
+
+    <div *ngIf="!eventById && eventForm.touched" class="text-center mt-4 text-muted fs-5">
+      <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>No event found.
+    </div>
+
+  </div>
+</div>

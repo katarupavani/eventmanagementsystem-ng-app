@@ -1,0 +1,83 @@
+<app-navbar></app-navbar>
+
+<!-- Add margin-top with pt-5 to prevent overlap -->
+<div class="bg-gradient-custom min-vh-100 d-flex justify-content-center align-items-center pt-5">
+  <div class="card-custom shadow p-5 rounded-4 w-100" style="max-width: 600px;">
+    <h3 class="text-primary text-center mb-4 fw-bold">
+      <i class="bi bi-calendar-plus-fill me-2"></i> Create New Event
+    </h3>
+
+    <form [formGroup]="eventForm" (ngSubmit)="submitForm()">
+      <div class="mb-3">
+        <label class="form-label fw-semibold">
+          <i class="bi bi-hash me-2 text-secondary"></i>Event ID
+        </label>
+        <input type="number" class="form-control rounded-pill" formControlName="eventId" placeholder="Enter Event ID" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">
+          <i class="bi bi-card-text me-2 text-secondary"></i>Event Name
+        </label>
+        <input type="text" class="form-control rounded-pill" formControlName="eventName" placeholder="Enter Event Name" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">
+          <i class="bi bi-tags-fill me-2 text-secondary"></i>Category
+        </label>
+        <input type="text" class="form-control rounded-pill" formControlName="category" placeholder="e.g., Workshop" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">
+          <i class="bi bi-people-fill me-2 text-secondary"></i>Participant Limit
+        </label>
+        <input type="number" class="form-control rounded-pill" formControlName="limit" placeholder="Enter Limit" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">
+          <i class="bi bi-file-earmark-text me-2 text-secondary"></i>Description
+        </label>
+        <textarea class="form-control rounded-3" formControlName="description" rows="3" placeholder="Event Description" required></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">
+          <i class="bi bi-geo-alt-fill me-2 text-secondary"></i>Location
+        </label>
+        <input type="text" class="form-control rounded-pill" formControlName="location" placeholder="Enter Location" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">
+          <i class="bi bi-calendar-event-fill me-2 text-secondary"></i>Date
+        </label>
+        <input type="date" class="form-control rounded-pill" formControlName="date" required>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">
+            <i class="bi bi-clock-history me-2 text-secondary"></i>Start Time
+          </label>
+          <input type="time" class="form-control rounded-pill" formControlName="startTime" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">
+            <i class="bi bi-clock me-2 text-secondary"></i>End Time
+          </label>
+          <input type="time" class="form-control rounded-pill" formControlName="endTime" required>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 rounded-pill fw-bold mt-3" [disabled]="eventForm.invalid">
+        🚀 Create Event
+      </button>
+
+      <p class="text-success text-center mt-3" *ngIf="successMessage">{{ successMessage }}</p>
+      <p class="text-danger text-center mt-3" *ngIf="errorMessage">{{ errorMessage }}</p>
+    </form>
+  </div>
+</div>

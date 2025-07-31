@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+  <h2 class="text-center mb-5 display-4 text-gradient fw-bold">
+    <i class="bi bi-stars"></i> Upcoming Events
+  </h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger text-center fw-semibold">
+    {{ errorMessage }}
+  </div>
+
+  <div class="row justify-content-center" *ngIf="upcomingEvents.length > 0">
+    <div
+      class="col-lg-4 col-md-6 mb-5 d-flex align-items-stretch"
+      *ngFor="let event of upcomingEvents"
+    >
+      <div class="event-card glass-card w-100 p-4 shadow-lg rounded-4">
+        <div class="event-header text-center mb-3">
+          <h5 class="text-gradient fw-bold">{{ event.eventName }}</h5>
+        </div>
+
+        <div class="event-details">
+          <p><i class="bi bi-geo-alt-fill text-danger me-2"></i><strong>Location:</strong> {{ event.location }}</p>
+          <p><i class="bi bi-folder-fill text-warning me-2"></i><strong>Category:</strong> {{ event.category }}</p>
+          <p><i class="bi bi-calendar-event-fill text-primary me-2"></i><strong>Date:</strong> {{ event.date }}</p>
+          <p><i class="bi bi-clock-fill text-info me-2"></i><strong>Start:</strong> {{ event.startTime }}</p>
+          <p><i class="bi bi-stopwatch-fill text-dark me-2"></i><strong>End:</strong> {{ event.endTime }}</p>
+        </div>
+
+        <div class="text-center mt-4">
+          <button class="btn btn-gradient btn-sm px-4 py-2">
+            <i class="bi bi-info-circle-fill me-1"></i> Know More
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p *ngIf="upcomingEvents.length === 0 && !errorMessage" class="text-center text-muted mt-5 fs-5">
+    🚫 No upcoming events available.
+  </p>
+</div>
