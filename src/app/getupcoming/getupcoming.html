@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-5 display-5 fw-bold text-success"> Upcoming Events </h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger text-center">{{ errorMessage }}</div>
+
+  <div class="row justify-content-center" *ngIf="upcomingEvents.length > 0">
+    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let event of upcomingEvents">
+      <div class="card h-100 shadow-lg border-0 rounded-4">
+        <div class="card-header bg-success text-white text-center fs-5 fw-semibold">
+          {{ event.eventName }}
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>📍 Location:</strong> {{ event.location }}</li>
+            <li class="list-group-item"><strong>📂 Category:</strong> {{ event.category }}</li>
+            <li class="list-group-item"><strong>📅 Date:</strong> {{ event.date }}</li>
+            <li class="list-group-item"><strong>⏰ Start:</strong> {{ event.startTime }}</li>
+            <li class="list-group-item"><strong>🔚 End:</strong> {{ event.endTime }}</li>
+          </ul>
+        </div>
+        <div class="card-footer text-center bg-light">
+          <button class="btn btn-outline-success btn-sm">Know More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p *ngIf="upcomingEvents.length === 0 && !errorMessage" class="text-center text-muted mt-5 fs-5">
+    🚫 No upcoming events available.
+  </p>
+</div>

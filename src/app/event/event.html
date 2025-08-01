@@ -1,0 +1,76 @@
+<div class="container mt-5">
+  <h2 class="text-primary mb-4 text-center">Create Event</h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <form [formGroup]="eventForm" (ngSubmit)="submitForm()" class="p-4 border rounded shadow bg-light">
+
+
+        <div class="mb-3">
+          <label class="form-label text-secondary">Name:</label>
+          <input type="text" class="form-control" formControlName="eventName" required>
+        </div>
+
+      <div class="mb-3">
+  <label class="form-label text-secondary">Category:</label>
+  <select class="form-select" formControlName="category" required>
+    <option value="" disabled selected>Select Category</option>
+    <option value="Dance">Dance</option>
+    <option value="Drama">Drama</option>
+    <option value="Musical Night">Musical Night</option>
+    <option value="Birthday">Birthday</option>
+  </select>
+  <div *ngIf="eventForm.get('category')?.invalid && eventForm.get('category')?.touched" class="text-danger">
+    Please select a category.
+  </div>
+</div>
+
+        <div class="mb-3">
+          <label class="form-label text-secondary">Description:</label>
+          <textarea class="form-control" formControlName="description" required></textarea>
+        </div>
+
+       <div class="mb-3">
+  <label class="form-label text-secondary">Limit:</label>
+  <input type="number" class="form-control" formControlName="limit"
+         [ngClass]="{ 'is-invalid': eventForm.get('limit')?.invalid && eventForm.get('limit')?.touched }" required>
+
+  <div *ngIf="eventForm.get('limit')?.hasError('min') && eventForm.get('limit')?.touched" class="text-danger">
+    Limit must be greater than 10.
+  </div>
+</div>
+        <div class="mb-3">
+          <label class="form-label text-secondary">Location:</label>
+          <input type="text" class="form-control" formControlName="location" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label text-secondary">Date:</label>
+          <input type="date" class="form-control" formControlName="date"
+                 [ngClass]="{ 'is-invalid': eventForm.get('date')?.invalid && eventForm.get('date')?.touched }">
+          <div *ngIf="eventForm.get('date')?.hasError('pastDate') && eventForm.get('date')?.touched"
+               class="text-danger">
+            Date cannot be in the past.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label text-secondary">Start Time:</label>
+          <input type="time" class="form-control" formControlName="startTime" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label text-secondary">End Time:</label>
+          <input type="time" class="form-control" formControlName="endTime" required>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100" [disabled]="eventForm.invalid">
+          Create Event
+        </button>
+
+        <p class="text-success mt-3">{{ successMessage }}</p>
+        <p class="text-danger">{{ errorMessage }}</p>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+
+.glassmorphic-nav {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  z-index: 1050;
+}
+
+.nav-glow {
+  color: #ffffff;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.nav-glow:hover,
+.nav-glow.router-link-active,
+.nav-glow.active {
+  background: linear-gradient(90deg, #0dcaf0, #6f42c1);
+  color: white !important;
+  box-shadow: 0 0 10px rgba(111, 66, 193, 0.4);
+  transform: translateY(-2px);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #f0420d, #0067bb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.home-wrapper {
+  background-image: url('https://partyslate.imgix.net/companies-cover-image/30518/image-73d6df3f-dc75-44d6-b028-61f3afed515b.jpg?ixlib=js-3.8.0&auto=compress%2Cformat&bg=fff&w=3840');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.hero-content {
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-heading {
+  font-size: 3rem;
+  animation: slideInDown 1s ease-out;
+}
+
+.hero-quote {
+  font-size: 1.5rem;
+  font-style: italic;
+  animation: fadeIn 2s ease-in;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

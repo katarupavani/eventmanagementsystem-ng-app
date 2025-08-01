@@ -1,0 +1,32 @@
+<div class="home-wrapper">
+  <!-- Navbar at the Top -->
+  <nav class="navbar navbar-expand-lg bg-transparent shadow-lg px-4 py-3 glassmorphic-nav w-100 fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold fs-4 text-gradient d-flex align-items-center" routerLink="/">
+        <i class="bi bi-stars me-2 fs-4"></i> Event Portal
+      </a>
+      <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav gap-2 text-center">
+          <li class="nav-item"><a class="nav-link nav-glow" href="/event" routerLinkActive="active"><i class="bi bi-pencil-square me-1"></i> Create Event</a></li>
+           <li class="nav-item"><a class="nav-link nav-glow" href="/getupcoming" routerLinkActive="active"><i class="bi bi-calendar3-event me-1"></i> Upcoming Events</a></li>
+         
+          <li class="nav-item"><a class="nav-link nav-glow" href="/getevent" routerLinkActive="active"><i class="bi bi-card-list me-1"></i> All Events</a></li>
+          <li class="nav-item"><a class="nav-link nav-glow" href="/updateevent" routerLinkActive="active"><i class="bi bi-search me-1"></i> Update Event</a></li>
+          <li class="nav-item"><a class="nav-link nav-glow" href="/deleteevent" routerLinkActive="active"><i class="bi bi-calendar-plus me-1"></i> Cancel Event</a></li>
+          <li class="nav-item"><a class="nav-link nav-glow" href="/getbyid" routerLinkActive="active"><i class="bi bi-journal-text me-1"></i> Get Event by ID</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content Centered Under Navbar -->
+  <div class="hero-content d-flex flex-column justify-content-center align-items-center text-center text-white" style="padding-top: 120px;">
+    <h1 class="display-4 fw-bold hero-heading">Welcome to the Event Portal</h1>
+    <p class="lead hero-quote">"Organize, Experience, Remember - All in One Place."</p>
+  </div>
+</div>

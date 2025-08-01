@@ -1,0 +1,78 @@
+<h3 class="text-center mt-4">Create or Update Event</h3>
+
+<div class="container mb-4">
+  <form [formGroup]="eventForm" (ngSubmit)="submitForm()" class="p-3 border rounded bg-light">
+    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+    <div class="row">
+      <div class="col-md-6 mb-2">
+        <label>Event Name:</label>
+        <input type="text" class="form-control" formControlName="eventName">
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <label>Category:</label>
+        <input type="text" class="form-control" formControlName="category">
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <label>Description:</label>
+        <input type="text" class="form-control" formControlName="description">
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <label>Limit:</label>
+        <input type="number" class="form-control" formControlName="limit">
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <label>Location:</label>
+        <input type="text" class="form-control" formControlName="location">
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <label>Date:</label>
+        <input type="date" class="form-control" formControlName="date">
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <label>Start Time:</label>
+        <input type="time" class="form-control" formControlName="startTime">
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <label>End Time:</label>
+        <input type="time" class="form-control" formControlName="endTime">
+      </div>
+    </div>
+
+    <button class="btn btn-primary mt-3" type="submit">{{ isEditing ? 'Update' : 'Create' }}</button>
+    <button class="btn btn-secondary mt-3 ms-2" type="button" *ngIf="isEditing" (click)="cancelEdit()">Cancel</button>
+  </form>
+</div>
+
+<h3 class="text-center mt-5">All Events</h3>
+
+<div *ngIf="events.length > 0" class="container">
+  <div class="row">
+    <div class="col-md-6 col-lg-4 mb-4" *ngFor="let event of events">
+      <div class="event-box p-3 shadow rounded bg-light border">
+        <h5 class="text-primary">{{ event.eventName }}</h5>
+        <p><strong>ID:</strong> {{ event.eventId }}</p>
+        <p><strong>Category:</strong> {{ event.category }}</p>
+        <p><strong>Description:</strong> {{ event.description }}</p>
+        <p><strong>Limit:</strong> {{ event.limit }}</p>
+        <p><strong>Location:</strong> {{ event.location }}</p>
+        <p><strong>Date:</strong> {{ event.date }}</p>
+        <p><strong>Start Time:</strong> {{ event.startTime }}</p>
+        <p><strong>End Time:</strong> {{ event.endTime }}</p>
+
+        <button class="btn btn-warning btn-sm mt-2" (click)="editEvent(event)">Update</button>
+        <button class="btn btn-danger btn-sm mt-2 ms-2" (click)="deleteEvent(event.eventId)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p *ngIf="events.length === 0 && successMessage === ''" class="text-center text-muted">No events available.</p>

@@ -1,0 +1,143 @@
+<p>updateevent works!</p>
+<div class="container mt-5">
+  <h2 class="text-primary text-center mb-4">Update Event</h2>
+
+  <!-- Event ID Input Section -->
+  <div class="mb-4 text-center">
+    <label class="form-label">Enter Event ID to Update</label>
+    <input
+      type="number"
+      class="form-control w-50 mx-auto"
+      [(ngModel)]="eventId"
+      name="eventId"
+      required
+    />
+    <button class="btn btn-primary mt-2" (click)="getEventById(eventId)">
+      Fetch Event
+    </button>
+  </div>
+
+  <!-- Form Starts Here -->
+  <form
+    [formGroup]="eventForm"
+    (ngSubmit)="updateEvent()"
+    class="p-4 border rounded bg-light shadow"
+  >
+    <!-- Event Name -->
+    <div class="mb-3">
+      <label class="form-label">Event Name</label>
+      <input type="text" class="form-control" formControlName="eventName" />
+      <div
+        *ngIf="eventForm.get('eventName')?.invalid && eventForm.get('eventName')?.touched"
+        class="text-danger"
+      >
+        Event Name is required
+      </div>
+    </div>
+
+    <!-- Category -->
+    <div class="mb-3">
+      <label class="form-label">Category</label>
+      <input type="text" class="form-control" formControlName="category" />
+      <div
+        *ngIf="eventForm.get('category')?.invalid && eventForm.get('category')?.touched"
+        class="text-danger"
+      >
+        Category is required
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        formControlName="description"
+        rows="3"
+      ></textarea>
+      <div
+        *ngIf="eventForm.get('description')?.invalid && eventForm.get('description')?.touched"
+        class="text-danger"
+      >
+        Description is required
+      </div>
+    </div>
+
+    <!-- Limit -->
+    <div class="mb-3">
+      <label class="form-label">Limit</label>
+      <input type="number" class="form-control" formControlName="limit" />
+      <div
+        *ngIf="eventForm.get('limit')?.errors?.['min'] && eventForm.get('limit')?.touched"
+        class="text-danger"
+      >
+        Limit must be greater than 10
+      </div>
+    </div>
+
+    <!-- Location -->
+    <div class="mb-3">
+      <label class="form-label">Location</label>
+      <input type="text" class="form-control" formControlName="location" />
+      <div
+        *ngIf="eventForm.get('location')?.invalid && eventForm.get('location')?.touched"
+        class="text-danger"
+      >
+        Location is required
+      </div>
+    </div>
+
+    <!-- Date -->
+    <div class="mb-3">
+      <label class="form-label">Date</label>
+      <input type="date" class="form-control" formControlName="date" />
+      <div
+        *ngIf="eventForm.get('date')?.invalid && eventForm.get('date')?.touched"
+        class="text-danger"
+      >
+        Date is required
+      </div>
+    </div>
+
+    <!-- Start Time -->
+    <div class="mb-3">
+      <label class="form-label">Start Time</label>
+      <input type="time" class="form-control" formControlName="startTime" />
+      <div
+        *ngIf="eventForm.get('startTime')?.invalid && eventForm.get('startTime')?.touched"
+        class="text-danger"
+      >
+        Start time is required
+      </div>
+    </div>
+
+    <!-- End Time -->
+    <div class="mb-3">
+      <label class="form-label">End Time</label>
+      <input type="time" class="form-control" formControlName="endTime" />
+      <div
+        *ngIf="eventForm.get('endTime')?.invalid && eventForm.get('endTime')?.touched"
+        class="text-danger"
+      >
+        End time is required
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="text-center">
+      <button type="submit" class="btn btn-success" [disabled]="eventForm.invalid">
+        Update Event
+      </button>
+    </div>
+  </form>
+
+  <!-- Success Message -->
+  <div *ngIf="successMessage" class="alert alert-success mt-3 text-center">
+    {{ successMessage }}
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3 text-center">
+    {{ errorMessage }}
+  </div>
+</div>

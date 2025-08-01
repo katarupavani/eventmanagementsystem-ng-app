@@ -1,0 +1,85 @@
+.form-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 25px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+h2 {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: 600;
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+button[disabled] {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.event-box {
+  margin-top: 25px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-left: 5px solid #007bff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.event-box h3 {
+  margin-top: 0;
+  color: #343a40;
+}
+
+.event-box p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.success {
+  color: green;
+  font-weight: bold;
+  text-align: center;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}

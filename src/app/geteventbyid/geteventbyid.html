@@ -1,0 +1,25 @@
+<p>geteventbyid works!</p>
+
+<div class="form-container">
+  <h2>Get Event By ID</h2>
+
+  <form [formGroup]="eventForm" (ngSubmit)="submitForm()">
+    <label>Enter Event ID:</label>
+    <input type="number" formControlName="event_id" required>
+    <button type="submit" [disabled]="eventForm.invalid">Fetch Event</button>
+  </form>
+
+  <div *ngIf="eventById" class="event-box">
+    <h3>{{ eventById.eventName }}</h3>
+    <p><strong>ID:</strong> {{ eventById.eventId }}</p>
+    <p><strong>Category:</strong> {{ eventById.category }}</p>
+    <p><strong>Description:</strong> {{ eventById.description }}</p>
+    <p><strong>Limit:</strong> {{ eventById.limit }}</p>
+    <p><strong>Location:</strong> {{ eventById.location }}</p>
+    <p><strong>Date:</strong> {{ eventById.date }}</p>
+    <p><strong>Start Time:</strong> {{ eventById.startTime }}</p>
+    <p><strong>End Time:</strong> {{ eventById.endTime }}</p>
+  </div>
+
+  <p *ngIf="!eventById && eventForm.touched">No event found.</p>
+</div>
