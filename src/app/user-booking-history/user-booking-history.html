@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <h2>Booking History by Username</h2>
+
+  <div class="form-group mb-3">
+    <label for="username">Enter Username:</label>
+    <input type="text" class="form-control" [(ngModel)]="username" id="username" />
+    <button class="btn btn-primary mt-2" (click)="fetchBookings()">Fetch Bookings</button>
+  </div>
+
+  <div *ngIf="message" [class.text-danger]="error" [class.text-success]="!error">
+    {{ message }}
+  </div>
+
+  <!-- Show table if bookings exist -->
+  <table *ngIf="bookings.length > 0" class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th>Booking ID</th>
+        <th>Event Name</th>
+        <th>Event Date</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Booking Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let booking of bookings">
+        <td>{{ booking.bookId }}</td>
+        <td>{{ booking.event.eventName }}</td>
+        <td>{{ booking.event.date | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ booking.event.startTime }}</td>
+        <td>{{ booking.event.endTime }}</td>
+        <td>{{ booking.eventdt | date: 'mediumDate' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="bookings.length === 0 && !error && message" class="text-warning mt-3">
+    No bookings available for this user.
+  </div>
+</div>

@@ -1,37 +1,50 @@
 <app-navbar></app-navbar>
-<div class="container mt-5">
+
+<div class="container mt-5 position-relative" #timelineContainer>
   <h2 class="text-center mb-5 display-4 text-gradient fw-bold">
-    <i class="bi bi-stars"></i> Upcoming Events
+    <i class="bi bi-stars"></i> Upcoming Events Timeline
   </h2>
 
   <div *ngIf="errorMessage" class="alert alert-danger text-center fw-semibold">
     {{ errorMessage }}
   </div>
 
-  <div class="row justify-content-center" *ngIf="upcomingEvents.length > 0">
-    <div
-      class="col-lg-4 col-md-6 mb-5 d-flex align-items-stretch"
-      *ngFor="let event of upcomingEvents"
-    >
-      <div class="event-card glass-card w-100 p-4 shadow-lg rounded-4">
-        <div class="event-header text-center mb-3">
-          <h5 class="text-gradient fw-bold">{{ event.eventName }}</h5>
-        </div>
+  <!-- Responsive SVG Curve -->
+<!-- Enhanced SVG Curve -->
+<svg #timelineSVG class="timeline-svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="curveGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0dcaf0" />
+      <stop offset="100%" stop-color="#6f42c1" />
+    </linearGradient>
+  </defs>
 
-        <div class="event-details">
-          <p><i class="bi bi-geo-alt-fill text-danger me-2"></i><strong>Location:</strong> {{ event.location }}</p>
-          <p><i class="bi bi-folder-fill text-warning me-2"></i><strong>Category:</strong> {{ event.category }}</p>
-          <p><i class="bi bi-calendar-event-fill text-primary me-2"></i><strong>Date:</strong> {{ event.date }}</p>
-          <p><i class="bi bi-clock-fill text-info me-2"></i><strong>Start:</strong> {{ event.startTime }}</p>
-          <p><i class="bi bi-stopwatch-fill text-dark me-2"></i><strong>End:</strong> {{ event.endTime }}</p>
-        </div>
+  <path 
+    id="timelinePathElement"
+    d="M 100 500 C 400 100, 800 900, 1100 300" 
+    fill="none" stroke="url(#curveGradient)" stroke-width="6" />
+</svg>
 
-        <div class="text-center mt-4">
-          <button class="btn btn-gradient btn-sm px-4 py-2">
-            <i class="bi bi-info-circle-fill me-1"></i> Know More
-          </button>
-        </div>
-      </div>
+
+  <!-- Dots on Curve -->
+  <div 
+    *ngFor="let pos of dotPositions; let i = index" 
+    class="dot" 
+    [ngStyle]="{ top: pos.y + 'px', left: pos.x + 'px' }"
+    (mouseenter)="showPopup(i)" 
+    (mouseleave)="hidePopup()">
+  </div>
+
+  <!-- Popup Event Card -->
+  <div *ngIf="hoveredEventIndex !== null" 
+       class="popup-card glass-card shadow-lg"
+       [ngStyle]="popupPosition">
+    <div class="p-4">
+      <h4 class="text-gradient fw-bold mb-3 text-center">{{ upcomingEvents[hoveredEventIndex].eventName }}</h4>
+      <p><i class="bi bi-calendar-event me-2"></i>{{ upcomingEvents[hoveredEventIndex].date }}</p>
+      <p><i class="bi bi-geo-alt me-2"></i>{{ upcomingEvents[hoveredEventIndex].location }}</p>
+      <p><i class="bi bi-clock me-2"></i>{{ upcomingEvents[hoveredEventIndex].startTime }} - {{ upcomingEvents[hoveredEventIndex].endTime }}</p>
+      <p><i class="bi bi-info-circle me-2"></i>{{ upcomingEvents[hoveredEventIndex].description }}</p>
     </div>
   </div>
 

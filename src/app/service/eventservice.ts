@@ -35,4 +35,5 @@ getUpcomingEvents() {
 registerForEvent(eventId: number, userId: number) {
   return this.httpClient.post<any>('/api/events/create', { eventId, userId });
 }
+
 }

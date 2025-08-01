@@ -1,61 +1,75 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookEventservice } from '../service/book-eventservice';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { IBookEvent } from '../model/createEvent.model';
 
 @Component({
   selector: 'app-register-event',
-  imports: [ReactiveFormsModule,CommonModule],
+  standalone: true,
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './register-event.html',
   styleUrl: './register-event.css'
 })
-export class RegisterEvent {
-
-  bookingForm = new FormGroup({
-    eventId: new FormControl(''),
-    userId: new FormControl(''),
-    eventdt: new FormControl('')
-  });
-
+export class RegisterEvent implements OnInit {
+  events: { eventId: number; eventName: string }[] = [];
   successMessage: string | null = null;
   createdBookingId: number | null = null;
-  errorMessage: null | null=null;
+  errorMessage: string | null = null;
+
+  bookingForm = new FormGroup({
+    username: new FormControl<string>('', Validators.required),
+    eventName: new FormControl<string>('', Validators.required)
+  });
 
   constructor(private bookEventService: BookEventservice) {}
-submitBooking(): void {
-  this.successMessage = null;
-  this.errorMessage = null;
 
+  ngOnInit(): void {
+    this.loadEvents();
+  }
 
+  loadEvents(): void {
+    this.bookEventService.getAllEvents().subscribe({
+      next: response => {
+        this.events = response.data || [];
+      },
+      error: err => {
+        console.error('Failed to load events:', err);
+        this.errorMessage = 'Could not load events.';
+      }
+    });
+  }
 
-  if (this.bookingForm.valid) {
-    const bookingData = this.bookingForm.value;
+  submitBooking(): void {
+    this.successMessage = null;
+    this.errorMessage = null;
 
-    this.bookEventService.createBooking(bookingData).subscribe(
-      (response: any) => {
-        console.log('Raw response:', response);
+    if (this.bookingForm.valid) {
+      const bookingData = {
+        username: this.bookingForm.value.username!,
+        eventName: this.bookingForm.value.eventName!
+      };
 
-        if (response?.status === 'success') {
-          const createdBooking = response.data;
-          if (createdBooking?.bookId) {
-            this.createdBookingId = createdBooking.bookId;
+      this.bookEventService.createBookingByName(bookingData).subscribe({
+        next: (response: any) => {
+          if (response?.status === 'success') {
+            const createdBooking = response.data;
+            this.createdBookingId = createdBooking?.bookId || null;
             this.successMessage = `Booking successful! ID: ${this.createdBookingId}`;
           } else {
-            this.successMessage = 'Booking created, but no booking ID received.';
+            this.errorMessage = response.message || 'Booking failed.';
           }
-        } else if (response?.status === 'error') {
-          this.errorMessage = response.message || 'Booking failed.';
+        },
+        error: (error) => {
+          console.error('Error creating booking:', error);
+          this.errorMessage = error?.error?.message || 'Booking failed. Please try again.';
         }
-      },
-      (error) => {
-        console.error('Error creating booking:', error);
-        this.errorMessage = error?.error?.message || 'Booking failed. Please try again.';
-      }
-    );
+      });
+    } else {
+      this.errorMessage = 'Please fill in all required fields.';
+    }
   }
-}
-goBack(): void {
-  location.href="" // change '/events' to your actual route
-}
+
+  goBack(): void {
+    window.location.href = "/getbyevent";
+  }
 }

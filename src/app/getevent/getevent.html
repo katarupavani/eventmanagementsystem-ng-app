@@ -1,41 +1,62 @@
 <app-navbar></app-navbar>
-<h3 class="text-center mt-5 text-gradient display-6 fw-bold">
+
+<h3 class="text-center mt-4 text-gradient display-6 fw-bold">
   <i class="bi bi-calendar-week me-2"></i>All Events
 </h3>
 
-<!-- Events Grid -->
-<div *ngIf="events.length > 0" class="container py-4">
-  <div class="row g-4">
-    <div class="col-md-6 col-lg-4" *ngFor="let event of events">
-      <div class="card h-100 shadow-lg border-0 rounded-4">
-        <div class="card-body p-4">
-          <h5 class="card-title text-primary mb-3">
-            <i class="bi bi-easel-fill me-2"></i>{{ event.eventName }}
-          </h5>
+<div class="container py-4">
+  <div class="carousel-container position-relative">
 
-          <ul class="list-unstyled small text-dark mb-3">
-            <li><strong>ID:</strong> {{ event.eventId }}</li>
-            <li><strong>Category:</strong> {{ event.category }}</li>
-            <li><strong>Description:</strong> {{ event.description }}</li>
-            <li><strong>Limit:</strong> {{ event.limit }}</li>
-            <li><strong>Location:</strong> {{ event.location }}</li>
-            <li><strong>Date:</strong> {{ event.date }}</li>
-            <li><strong>Start:</strong> {{ event.startTime }}</li>
-            <li><strong>End:</strong> {{ event.endTime }}</li>
-          </ul>
+    <div class="carousel-slide-wrapper">
+      <div 
+        class="carousel-slide"
+        [ngStyle]="{ transform: 'translateX(' + (-currentIndex * 33.333) + '%)' }">
 
-          <div class="text-end">
-            <button class="btn btn-gradient btn-sm px-4" (click)="registerEvent()">
-              <i class="bi bi-check2-circle me-1"></i>Register
-            </button>
+        <div 
+          *ngFor="let event of events; let i = index" 
+          class="carousel-card"
+          [ngClass]="{ 'active': i === currentIndex, 'side': i !== currentIndex }">
+
+          <div class="card glowing-border shadow-lg rounded-4 mx-auto" style="width: 300px;">
+            <img 
+              [src]="getImageForCategory(event.category)" 
+              class="card-img-top rounded-top-4" 
+              alt="Event Image" 
+              style="height: 200px; object-fit: cover;">
+
+            <div class="card-body px-3 py-2 text-center">
+              <h5 class="card-title text-primary fw-bold mb-2">
+                <i class="bi bi-easel-fill me-2"></i>{{ event.eventName }}
+              </h5>
+
+              <ul class="list-unstyled text-dark small mb-2">
+                <li><strong>ID:</strong> {{ event.eventId }}</li>
+                <li><strong>Category:</strong> {{ event.category }}</li>
+                <li><strong>Date:</strong> {{ event.date }}</li>
+                <li><strong>Time:</strong> {{ event.startTime }} - {{ event.endTime }}</li>
+                <li><strong>Location:</strong> {{ event.location }}</li>
+              </ul>
+
+              <button class="btn btn-gradient btn-sm px-4 mt-1" (click)="registerEvent()">
+                <i class="bi bi-check2-circle me-1"></i>Register
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="carousel-nav">
+      <button (click)="prevSlide()">
+        <i class="bi bi-arrow-left-circle-fill"></i>
+      </button>
+      <button (click)="nextSlide()">
+        <i class="bi bi-arrow-right-circle-fill"></i>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="events.length === 0" class="text-center text-muted mt-5">
+    <i class="bi bi-exclamation-circle me-2"></i>No events available at the moment.
   </div>
 </div>
-
-<!-- No Events Message -->
-<p *ngIf="events.length === 0 && successMessage === ''" class="text-center text-muted mt-5">
-  <i class="bi bi-exclamation-circle me-2"></i>No events available at the moment.
-</p>

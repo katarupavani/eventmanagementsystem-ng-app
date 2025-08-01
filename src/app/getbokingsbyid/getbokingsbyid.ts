@@ -1,24 +1,25 @@
 import { Component } from '@angular/core';
-import { IBookEvent } from '../model/createEvent.model';
+import { IBookEvent, IEvent } from '../model/createEvent.model';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Navbar } from "../navbar/navbar";
 import { BookEventservice } from '../service/book-eventservice';
-
+declare var bootstrap: any;
 @Component({
   selector: 'app-view-events',
   standalone: true,
   imports: [CommonModule, Navbar],
-  templateUrl: './getbokingsbyid.html',  // Fixed typo in filename
+  templateUrl: './getbokingsbyid.html', 
   styleUrls: ['./getbokingsbyid.css']
 })
 export class ViewEventsComponent {
-  events: { eventId: number; eventName: string }[] = [];
+ events:IEvent[] = [];  // Added eventdt
   bookings: IBookEvent[] = [];
   selectedEventId: number | null = null;
   selectedEventName: string = '';
   successMessage: string = '';
   errorMessage: string = '';
+  selectedBooking: IBookEvent | null = null;
 
   constructor(private bookEventService: BookEventservice, private router: Router) {}
 
@@ -30,7 +31,7 @@ export class ViewEventsComponent {
     this.bookEventService.getAllEvents().subscribe({
       next: (response) => {
         console.log("Events fetched:", response);
-        this.events = response.data || [];
+        this.events = response.data || [];  // Ensure response contains eventdt
         this.errorMessage = '';
       },
       error: (err) => {
@@ -65,15 +66,33 @@ export class ViewEventsComponent {
     this.bookings = [];
   }
 
-
   editBooking(booking: IBookEvent): void {
-      this.router.navigate(['/bookings/update', booking.bookId]);
-    }
-  
-    viewBooking(booking: IBookEvent): void {
-      this.router.navigate(['/booking/view', booking.bookId]);
-    }
-  
- 
+    this.router.navigate(['/bookings/update', booking.bookId]);
+  }
 
+  openDeleteModal(booking: IBookEvent): void {
+    this.selectedBooking = booking;
+    const modal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
+    modal.show();
+  }
+
+  deleteBooking(): void {
+    if (!this.selectedBooking) return;
+
+    this.bookEventService.deleteBooking(this.selectedBooking.bookId!).subscribe({
+      next: () => {
+        this.successMessage = `Booking ID ${this.selectedBooking?.bookId} deleted successfully.`;
+        this.errorMessage = '';
+        this.viewBookings(this.selectedEventId!, this.selectedEventName); // Reload bookings after delete
+        this.selectedBooking = null;
+        const modalEl = document.getElementById('deleteConfirmModal');
+        if (modalEl) bootstrap.Modal.getInstance(modalEl).hide();
+      },
+      error: err => {
+        console.error('Delete error:', err);
+        this.errorMessage = `Failed to delete booking ID ${this.selectedBooking?.bookId}.`;
+        this.successMessage = '';
+      }
+    });
+  }
 }

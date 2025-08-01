@@ -41,7 +41,7 @@
           <tr *ngFor="let booking of events">
             <td class="fw-semibold text-center">{{ booking.bookId }}</td>
             <td class="text-center">{{ booking.userId }}</td>
-            <td class="text-center">{{ booking.eventId }}</td>
+            <td class="text-center">{{ booking.eventId  }}</td>
             <td class="text-center">{{ booking.eventdt }}</td>
             <td class="text-center">
               <button class="btn btn-outline-info btn-sm me-1" (click)="viewBooking(booking)">

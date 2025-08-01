@@ -15,5 +15,78 @@
 
 .btn-gradient:hover {
   background: linear-gradient(to right, #00bfff, #0d6efd);
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+}
+
+.carousel-container {
+  max-width: 900px;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-slide-wrapper {
+  overflow: hidden;
+}
+
+.carousel-slide {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+  will-change: transform;
+}
+
+.carousel-card {
+  flex: 0 0 33.333%;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-card.active {
+  transform: scale(1);
+  opacity: 1;
+  filter: none;
+  transition: all 0.4s ease;
+}
+
+.carousel-card.side {
+  transform: scale(0.9);
+  opacity: 0.6;
+  filter: blur(2px);
+  transition: all 0.4s ease;
+}
+
+.card.glowing-border {
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card.glowing-border:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(0, 123, 255, 0.8);
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  padding: 0 1rem;
+}
+
+.carousel-nav button {
+  background-color: rgba(0, 123, 255, 0.7);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  border-radius: 50%;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.carousel-nav button:hover {
+  background-color: rgba(0, 123, 255, 0.9);
 }

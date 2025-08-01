@@ -27,7 +27,7 @@ export class BookEventservice {
 
   // Fetch booking by ID
   getBookingId(id: number): Observable<IBookEvent> {
-    return this.httpclient.get<ApiResponse<IBookEvent>>(`${this.baseurl}/bookings/${id}`)
+    return this.httpclient.get<ApiResponse<IBookEvent>>(`${this.baseurl}/bookings/book/${id}`)
       .pipe(map(res => res.data));
   }
 
@@ -48,6 +48,17 @@ export class BookEventservice {
       );
   }
 
+  getEvents(): Observable<IEvent[]> {
+  return this.httpclient.get<ApiResponse<IEvent[]>>(`${this.baseurl}/events`)
+    .pipe(
+      map(response => response.data),
+      catchError(err => {
+        console.error('Failed to fetch events:', err);
+        return of([]); // return empty array on error
+      })
+    );
+}
+
   
   getAllEvents(): Observable<any> {
     return this.httpclient.get<any>(`${this.baseurl}/events`); // Assuming this exists
@@ -58,8 +69,28 @@ export class BookEventservice {
   }
 
   
-
+ getUserBookings(): Observable<any> {
+    return this.httpclient.get<any>('/api/bookings/user/bookings');
+  }
   deleteBooking(id:number){
     return this.httpclient.delete(`${this.baseurl}/bookings/${id}`)
   }
+
+getBookingsByUserId(userId: number): Observable<any> {
+  return this.httpclient.get<any>(`${this.baseurl}/bookings/user/${userId}`);
+}
+  getAllUsers(): Observable<{ userId: number; userName: string }[]> {
+  return this.httpclient.get<ApiResponse<{ userId: number; userName: string }[]>>(`${this.baseurl}/users`)
+    .pipe(map(res => res.data));
+}
+
+  createBookingByName(bookingData: { username: string; eventName: string }): Observable<any> {
+    return this.httpclient.post(`${this.baseurl}/bookings/create-by-names`, bookingData);
+  }
+
+  getBookingsByUsername(username: string) {
+  return this.httpclient.get<{ status: string; data: any[]; message: string }>(
+    `your-api-endpoint/bookings/user/${username}`
+  );
+}
 }

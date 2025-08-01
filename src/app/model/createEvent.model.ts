@@ -9,3 +9,5 @@ export interface IBookEvent {
   user: User;
   event: IEvent;
 }
+
+export type { IEvent };

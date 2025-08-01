@@ -8,6 +8,7 @@ import { EventComponent } from './event/event';
 import { Geteventbyid } from './geteventbyid/geteventbyid';
 import { Getupcoming } from './getupcoming/getupcoming';
 import {  ViewEventsComponent } from './getbokingsbyid/getbokingsbyid';
+import {  UserBookingHistory } from './user-booking-history/user-booking-history';
 
 export const routes: Routes = [
     {
@@ -40,6 +41,9 @@ export const routes: Routes = [
      },{
         path:'getbyevent',
         component:ViewEventsComponent
+     },{
+        path:'user-booking-history',
+        component:UserBookingHistory
      }
 
 ];

@@ -1,4 +1,5 @@
 export interface IEvent {
+imageUrl: any;
   eventId: number;
   eventName: string;
   category: string;

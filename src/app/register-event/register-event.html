@@ -1,7 +1,4 @@
-<!-- Background styling -->
 <div class="min-vh-100 d-flex justify-content-center align-items-center" style="background: linear-gradient(to right, #83a4d4, #b6fbff);">
-
-  <!-- Form Card -->
   <div class="container" style="max-width: 450px;">
     <div class="glass-card p-4 rounded-4 shadow-lg">
       <h3 class="text-center mb-4 fw-bold text-primary">📅 Register Event Booking</h3>
@@ -16,14 +13,21 @@
 
       <!-- Form -->
       <form [formGroup]="bookingForm" (ngSubmit)="submitBooking()">
+        <!-- Username Input -->
         <div class="mb-3">
-          <label class="form-label fw-semibold">👤 User ID</label>
-          <input type="number" formControlName="userId" class="form-control rounded-pill px-3" placeholder="Enter your User ID" required>
+          <label class="form-label fw-semibold">👤 Enter Username</label>
+          <input type="text" formControlName="username" class="form-control rounded-pill px-3" required placeholder="Enter username" />
         </div>
 
+        <!-- Event Dropdown -->
         <div class="mb-3">
-          <label class="form-label fw-semibold">🆔 Event ID</label>
-          <input type="number" formControlName="eventId" class="form-control rounded-pill px-3" placeholder="Enter Event ID" required>
+          <label class="form-label fw-semibold">🆔 Select Event</label>
+          <select formControlName="eventName" class="form-select rounded-pill px-3" required>
+            <option value="" disabled selected>Select an event</option>
+            <option *ngFor="let event of events" [value]="event.eventName">
+              {{ event.eventName }}
+            </option>
+          </select>
         </div>
 
         <button type="submit" class="btn btn-primary w-100 rounded-pill fw-bold mt-3">
@@ -31,7 +35,6 @@
         </button>
       </form>
 
-      <!-- Back Button -->
       <div class="text-center mt-3">
         <button class="btn btn-outline-secondary rounded-pill px-4" (click)="goBack()">
           🔙 Back

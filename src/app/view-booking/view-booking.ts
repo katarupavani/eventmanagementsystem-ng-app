@@ -17,7 +17,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ViewBookingComponent implements OnInit {
 goBack() {
-location.href="/view-bookings"
+location.href="/getbyevent"
 }
   booking?: IBookEvent;
   user?: User;
@@ -27,28 +27,6 @@ location.href="/view-bookings"
     private route: ActivatedRoute,
     private bookingSvc: BookEventservice
   ) {}
-
-  // ngOnInit(): void {
-  //   const bookingId = Number(this.route.snapshot.paramMap.get('id'));
-
-  //   this.bookingSvc.getBookingId(bookingId).pipe(
-  //     switchMap(booking => {
-  //       this.booking = booking;
-  //       return forkJoin({
-  //         user: this.bookingSvc.getUserById(booking.userId),
-  //         event: this.bookingSvc.getEventById(booking.eventId)
-  //       });
-  //     })
-  //   ).subscribe({
-  //     next: ({ user, event }) => {
-  //       this.user = user;
-  //       this.event = event;
-  //     },
-  //     error: err => {
-  //       console.error('Error loading details:', err);
-  //     }
-  //   });
-  // }
 
 
 
