@@ -1,12 +1,17 @@
-import { Component, signal } from '@angular/core';
+
+import { Component, NgModule, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Feedback } from "./feedback/feedback";
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [ RouterOutlet,ReactiveFormsModule,CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('ems-ng-app');
+  
 }

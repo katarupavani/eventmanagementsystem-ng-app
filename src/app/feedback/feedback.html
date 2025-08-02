@@ -1,0 +1,69 @@
+<div class="container py-5 overlay">
+  <!-- Header Section with Person Icon -->
+  <div class="d-flex justify-content-center align-items-center mb-5">
+    <div class="d-flex align-items-center">
+      <!-- Person Icon and Title -->
+      <i class="bi bi-person-fill fs-1 me-3 text-primary"></i>
+      <h2 class="display-4 fw-bold text-dark">Event Feedback Form</h2>
+    </div>
+  </div>
+
+  <!-- Feedback Form -->
+  <div class="glass-card p-5 mb-5 shadow-lg">
+    <form [formGroup]="Feedbackform" (ngSubmit)="submitFeedback()" novalidate class="row g-4">
+      <!-- Feedback ID Field -->
+      <div class="col-md-6">
+        <label class="form-label text-dark">Feedback ID</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-clipboard"></i></span>
+          <input type="number" class="form-control shadow-sm" formControlName="fid" placeholder="Enter feedback ID" />
+        </div>
+      </div>
+
+      <!-- User ID Field -->
+      <div class="col-md-6">
+        <label class="form-label text-dark">User ID</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-person"></i></span>
+          <input type="number" class="form-control shadow-sm" formControlName="userid" placeholder="Enter user ID" />
+        </div>
+      </div>
+
+      <!-- Event ID Field -->
+      <div class="col-md-6">
+        <label class="form-label text-dark">Event ID</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
+          <input type="number" class="form-control shadow-sm" formControlName="eventid" placeholder="Enter event ID" />
+        </div>
+      </div>
+
+      <!-- Rating Field -->
+      <div class="col-md-6">
+        <label class="form-label text-dark">Rating (1-5)</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-star"></i></span>
+          <input type="number" class="form-control shadow-sm" formControlName="rating" min="1" max="5" placeholder="Rating" />
+        </div>
+      </div>
+
+      <!-- Comment Field -->
+      <div class="col-12">
+        <label class="form-label text-dark">Comment</label>
+        <textarea class="form-control shadow-sm" formControlName="comment" rows="3" placeholder="Write your feedback..."></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="col-12 d-grid">
+        <button type="submit" class="btn btn-gradient rounded-pill py-2 fs-5">
+          <i class="bi bi-send"></i> Submit Feedback
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Success Message -->
+  <div *ngIf="message" class="alert alert-info text-center rounded-pill mt-4">
+    {{ message }}
+  </div>
+</div>

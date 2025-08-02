@@ -1,0 +1,53 @@
+<div class="container py-5">
+  <h2 class="text-center fw-bold text-primary mb-4">Search Feedbacks by User ID</h2>
+
+  <!-- Search Box -->
+  <div class="row mb-4">
+    <div class="col-md-6 offset-md-3">
+      <input type="number" [(ngModel)]="userIdSearch" class="form-control" placeholder="Enter User ID to search" />
+      <button (click)="searchFeedbackByUserId()" class="btn btn-outline-primary mt-3 w-100">Search Feedbacks</button>
+    </div>
+  </div>
+
+  <!-- Message -->
+  <div *ngIf="message" class="alert alert-info text-center">
+    {{ message }}
+  </div>
+
+  <!-- Show raw number of feedbacks fetched -->
+  <p *ngIf="searchUserFeedbacks.length > 0" class="text-center text-success">
+    {{ searchUserFeedbacks.length }} feedback(s) fetched
+  </p>
+
+  <!-- Feedback Table -->
+  <div *ngIf="groupedFeedbackUserIds().length > 0">
+    <div *ngFor="let userId of groupedFeedbackUserIds()">
+      <h3 class="text-center text-secondary mb-3">Feedbacks for User ID: {{ userId }}</h3>
+
+     <table class="table table-bordered text-center">
+  <thead>
+    <tr>
+      <th>Feedback ID</th>
+      <th>Event ID</th>
+      <th>Comment</th>
+      <th>Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let feedback of groupedFeedbacksByUser[userId]">
+      <td>{{ feedback.fid }}</td>
+      <td>{{ feedback.eventid.eventId }}</td>
+      <td>{{ feedback.comment }}</td>
+      <td>{{ feedback.rating }}/5</td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+  </div>
+
+  <!-- Show message if no feedback found -->
+  <div *ngIf="searchUserFeedbacks.length === 0 && message">
+    <p class="text-center text-danger">{{ message }}</p>
+  </div>
+</div>

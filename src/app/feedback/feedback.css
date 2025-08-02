@@ -1,0 +1,108 @@
+/* General Styling */
+body {
+  background: #f4f4f4;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Glass Effect for the Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Header Section Styling */
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #1d5a8b;
+  text-align: center;
+}
+
+/* Person Icon */
+.bi-person-fill {
+  color: #1d5a8b;
+}
+
+/* Form Input and Labels */
+input[type="number"], textarea {
+  border-radius: 12px;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #4e73df;
+  box-shadow: 0 0 8px rgba(70, 130, 180, 0.6);
+}
+
+/* Buttons */
+.btn-gradient {
+  background: linear-gradient(to right, #4e73df, #1d5a8b);
+  color: white;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(31, 38, 135, 0.1);
+}
+
+.btn-gradient:hover {
+  transform: scale(1.05);
+  background: linear-gradient(to right, #2a4a85, #1e395b);
+}
+
+/* Icons in Input Fields */
+.input-group-text {
+  background-color: #f0f3f7;
+  border-right: none;
+  border-radius: 12px;
+}
+
+.input-group .form-control {
+  border-radius: 12px;
+}
+
+/* Success Message */
+.alert-info {
+  background-color: rgba(92, 184, 92, 0.1);
+  color: #5bc0de;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #5bc0de;
+}
+
+/* Range Slider Styling (if needed) */
+.form-range {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  background: #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: background 0.3s;
+}
+
+.form-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #4e73df;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.form-range::-webkit-slider-thumb:hover {
+  background: #1d5a8b;
+}
+
+.form-range:focus {
+  background: #4e73df;
+}
+
+/* Spacing Between Form Sections */
+.row.g-4 {
+  margin-top: 2rem;
+}

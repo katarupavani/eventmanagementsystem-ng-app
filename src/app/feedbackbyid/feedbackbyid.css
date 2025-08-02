@@ -1,0 +1,27 @@
+.container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+  border-radius: 10px;
+}
+
+.card-header {
+  font-weight: 600;
+}
+
+.badge {
+  font-size: 0.9rem;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.btn-outline-primary {
+  transition: all 0.2s ease-in-out;
+}
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: white;
+}

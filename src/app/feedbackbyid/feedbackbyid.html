@@ -1,0 +1,82 @@
+<div class="container py-5">
+  <div class="text-center mb-4">
+    <h2 class="fw-bold text-primary">Event Feedback Dashboard</h2>
+    <p class="text-muted">View ratings and feedbacks from all events</p>
+  </div>
+
+  <!-- Event Ratings Table -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Event Ratings Summary</h5>
+    </div>
+    <div class="card-body p-0">
+      <table class="table table-bordered mb-0 text-center align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Event ID</th>
+            <th>Event Name</th>
+            <th>Overall Rating</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of events">
+            <td>{{ event.eventId }}</td>
+            <td class="text-start ps-4">{{ event.eventName }}</td>
+            <td>
+              <span class="badge bg-success fs-6 px-3">
+                {{ event.avgRating | number: '1.1-2' }}/5
+              </span>
+            </td>
+            <td>
+              <button class="btn btn-outline-primary btn-sm" (click)="getFeedback(event.eventId)">
+                View Feedbacks
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Feedback Section -->
+  <div *ngIf="selectedEventId !== null" class="card shadow-sm">
+    <div class="card-header bg-secondary text-white">
+      <h5 class="mb-0">
+        Feedbacks for: {{ selectedEventName }}
+        <small class="text-light">(ID: {{ selectedEventId }})</small>
+      </h5>
+    </div>
+
+    <div class="card-body">
+      <div *ngIf="message" class="alert alert-info">{{ message }}</div>
+
+      <div *ngIf="feedbacks.length > 0" class="table-responsive">
+        <table class="table table-striped table-hover align-middle text-center">
+          <thead class="table-light">
+            <tr>
+              <th>Feedback ID</th>
+              <th>User ID</th>
+              <th>User Name</th>
+              <th>Comment</th>
+              <th>Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let feedback of feedbacks">
+              <td>{{ feedback.fid }}</td>
+              <td>{{ feedback.userid }}</td>
+              <td>{{ feedback.userName }}</td>
+              <td class="text-start">{{ feedback.comment }}</td>
+              <td>
+                <span class="badge bg-warning text-dark px-3">
+                  {{ feedback.rating }}/5
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
