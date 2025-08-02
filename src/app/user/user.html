@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EventPro - User Dashboard</title>
+  
+</head>
+<body>
+
+  <nav>
+    <div class="logo">EventPro</div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="profilepage">Profile</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+    <div class="search-bar">
+      <input type="text" placeholder="Search for events..." />
+      <button>Search</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header class="dashboard-header">
+      <h1>Welcome, <span id="username">{{username}}</span>!</h1>
+    </header>
+
+    <section class="events-section" id="events">
+      <h2>Upcoming Events</h2>
+      <div class="events-list">
+        
+        <div class="event-card">
+          <img src="https://source.unsplash.com/featured/?conference" alt="Event 1" class="event-image" />
+          <div class="event-content">
+            <div class="event-title">Tech Conference 2025</div>
+            <div class="event-info">Apr 25, 2025 | San Francisco, CA</div>
+            <div class="event-description">Join industry leaders in tech to explore the future of AI and Cloud computing.</div>
+            <a href="eventregister" class="event-btn">Register</a>
+          </div>
+        </div>
+
+        
+        <div class="event-card">
+          <img src="https://source.unsplash.com/featured/?music,concert" alt="Event 2" class="event-image" />
+          <div class="event-content">
+            <div class="event-title">Summer Music Fest</div>
+            <div class="event-info">Jun 15, 2025 | Miami, FL</div>
+            <div class="event-description">Experience the best music artists live at the annual summer music festival.</div>
+            <a href="eventregister" class="event-btn">Register</a>
+          </div>
+        </div>
+
+        
+        <div class="event-card">
+          <img src="https://source.unsplash.com/featured/?art,exhibition" alt="Event 3" class="event-image" />
+          <div class="event-content">
+            <div class="event-title">Art Expo 2025</div>
+            <div class="event-info">Sep 10, 2025 | New York, NY</div>
+            <div class="event-description">Discover contemporary artworks by emerging and established artists worldwide.</div>
+            <a href="eventregister" class="event-btn">Register</a>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <img src="https://source.unsplash.com/featured/?music,concert" alt="Event 4" class="event-image" />
+          <div class="event-content">
+            <div class="event-title">Summer Music Fest</div>
+            <div class="event-info">Jun 15, 2025 | Miami, FL</div>
+            <div class="event-description">Experience the best music artists live at the annual summer music festival.</div>
+            <a href="eventregister" class="event-btn">Register</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>

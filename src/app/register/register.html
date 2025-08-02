@@ -1,0 +1,55 @@
+
+
+<form #form="ngForm">
+  <label>UserId:</label>
+  <input type="text" name="userid" [(ngModel)]="userid">
+  
+  <label>Username:</label>
+  <input type="text" name="username" [(ngModel)]="username"
+         required minlength="8" pattern="^[^\s]+$" #usernameInput="ngModel">
+  <div *ngIf="usernameInput.invalid && usernameInput.touched">
+   <div *ngIf="usernameInput.errors?.['required']">Username is required.</div>
+
+    <div *ngIf="usernameInput.errors?.['minlength']">Minimum 8 characters.</div>
+    <div *ngIf="usernameInput.errors?.['pattern']">No spaces allowed.</div>
+  </div>
+
+  
+  <label>Password:</label>
+  <input type="password" name="password" [(ngModel)]="password"
+         required pattern="^(?=.*\d).{8,}$" #passwordInput="ngModel">
+  <div *ngIf="passwordInput.invalid && passwordInput.touched">
+    <div *ngIf="passwordInput.errors?.['required']">Password is required.</div>
+    <div *ngIf="passwordInput.errors?.['pattern']">
+      Must be at least 8 characters with at least one number.
+    </div>
+  </div>
+
+  
+  <label>Email:</label>
+  <input type="email" name="email" [(ngModel)]="email"
+         required pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$" #emailInput="ngModel">
+  <div *ngIf="emailInput.invalid && emailInput.touched">
+    <div *ngIf="emailInput.errors?.['required']">Email is required.</div>
+    <div *ngIf="emailInput.errors?.['pattern']">Must be a valid email.</div>
+  </div>
+
+  <label for="role">Select Role:</label>
+<select name="role" [(ngModel)]="role" required>
+  <option value="" disabled selected>Select your role</option>
+  <option value="user">User</option>
+  <option value="organizer">Organizer</option>
+  <option value="admin">Admin</option>
+</select>
+
+
+
+
+  <button [disabled]="form.invalid" (click)="onSubmit()">Submit</button>
+
+
+   <p *ngIf="registrationSuccess" class="success-message">
+ Registered successfully! <a href="login">You can login now</a>.
+</p>
+
+</form>
