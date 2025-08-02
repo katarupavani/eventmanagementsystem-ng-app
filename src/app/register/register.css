@@ -1,0 +1,176 @@
+/* Base form styling */
+form {
+  max-width: 440px;
+  margin: 60px auto;
+  padding: 35px 30px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Animation on form appearance */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Labels */
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #222;
+  font-size: 15px;
+}
+
+/* Inputs and selects */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border: 1.4px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #007bff;
+  background-color: #fff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.12);
+}
+
+/* Button styling */
+button {
+  width: 100%;
+  background-color: #007bff;
+  border: none;
+  padding: 14px 0;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  background-color: #a0c6ff;
+  cursor: not-allowed;
+}
+
+/* Error message style */
+.error-message,
+div.error {
+  color: #d93025;
+  font-size: 13px;
+  margin-top: -12px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  form {
+    margin: 40px 16px;
+    padding: 25px 20px;
+  }
+}
+
+/* Optional tooltip (can be used if needed) */
+.tooltip {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  color: #007bff;
+}
+
+.tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 125%;
+  white-space: nowrap;
+  background-color: #333;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+}
+
+.success-message {
+  margin-top: 20px;
+  color: green;
+  font-weight: 500;
+  font-size: 15px;
+}
+.success-message a {
+  color: #007bff;
+  text-decoration: none;
+}
+.success-message a:hover {
+  text-decoration: underline;
+}
+body {
+  background: linear-gradient(135deg, #6f42c1, #007bff);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+/* Glassmorphic Navbar Styling */
+.glassmorphic-nav {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0 0 1.5rem 1.5rem;
+}
+
+/* Text gradient for brand */
+.text-gradient {
+  background: linear-gradient(90deg, #007bff, #6f42c1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glow effect on hover */
+.nav-glow {
+  color: #fff;
+  background: linear-gradient(90deg, #007bff, #6f42c1);
+  transition: background 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+}
+
+.nav-glow:hover {
+  background: linear-gradient(90deg, #6f42c1, #007bff);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+/* Toggler icon custom color */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23007bff' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280,123,255,0.8%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}

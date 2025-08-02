@@ -1,0 +1,104 @@
+<nav class="navbar navbar-expand-lg bg-transparent shadow-lg px-4 py-3 glassmorphic-nav">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold fs-4 text-gradient d-flex align-items-center" href="/user">
+      <i class="bi bi-stars me-2 fs-4"></i> Event Portal
+    </a>
+
+    <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav gap-2 text-center">
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/register" routerLinkActive="active">
+            <i class="bi bi-pencil-square me-1"></i> Register For Event
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/user-events" routerLinkActive="active">
+            <i class="bi bi-card-list me-1"></i> All Events
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/searchuser" routerLinkActive="active">
+            <i class="bi bi-search me-1"></i> Search 
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/upcominguser" routerLinkActive="active">
+            <i class="bi bi-calendar3-event me-1"></i> Upcoming Events
+          </a>
+        </li> 
+            <li class="nav-item">
+  <a class="nav-link nav-glow" href="/feedback" routerLinkActive="active">
+    <i class="bi bi-journal-text me-1"></i> Submit feedback
+  </a>
+</li>
+ <li class="nav-item">
+  <a class="nav-link nav-glow" href="/view-feedbacks" routerLinkActive="active">
+    <i class="bi bi-journal-text me-1"></i>View Feedbacks
+  </a>
+</li> 
+<li>
+<a class="nav-link nav-glow" href="/bookinguser" routerLinkActive="active">
+    <i></i> BookingDetails
+  </a> 
+</li>
+
+ 
+         <li class="nav-item">
+  <a class="nav-link nav-glow" href="" routerLinkActive="active">
+    <i class="bi bi-journal-text me-1"></i> Logout
+  </a>
+</li>
+   
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container mt-5 booking-history-card p-4 shadow-lg rounded-4 bg-light">
+  <h3 class="text-gradient fw-bold mb-4 text-center">
+    <i class="bi bi-clock-history me-2"></i>Your Booking History
+  </h3>
+
+  <p *ngIf="message" class="alert alert-warning text-center">{{ message }}</p>
+
+  <div *ngIf="bookings.length > 0; else noBookings">
+    <div class="table-responsive">
+      <table class="table table-hover table-striped align-middle text-center shadow-sm rounded-3 overflow-hidden">
+        <thead class="table-primary">
+          <tr>
+            <th scope="col">Booking ID</th>
+            <th scope="col">Event Name</th>
+            <th scope="col">Event Date</th>
+            <th scope="col">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let booking of bookings">
+            <td class="fw-semibold">{{ booking.bookId }}</td>
+            <td>{{ booking.event.eventName }}</td>
+            <td>{{ booking.eventdt | date:'mediumDate' }}</td>
+            <td>
+              {{ booking.event.startTime }} - {{ booking.event.endTime }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <ng-template #noBookings>
+    <div class="alert alert-info mt-4 text-center p-3 rounded-3 shadow-sm">
+      <i class="bi bi-calendar-x fs-4 me-2"></i> You haven’t booked any events yet.
+    </div>
+  </ng-template>
+</div>

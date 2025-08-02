@@ -1,0 +1,163 @@
+<nav class="navbar navbar-expand-lg bg-transparent shadow-lg px-4 py-3 glassmorphic-nav">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold fs-4 text-gradient d-flex align-items-center" href="/organizer">
+      <i class="bi bi-stars me-2 fs-4"></i> Event Portal
+    </a>
+
+    <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav gap-2 text-center">
+        
+        <!-- <li class="nav-item">
+          <a class="nav-link nav-glow" href="/create-event" routerLinkActive="active">
+            <i class="bi bi-calendar-plus me-1"></i> Create an Event
+          </a>
+        </li> -->
+        <!-- <li class="nav-item">
+          <a class="nav-link nav-glow" href="" routerLinkActive="active">
+            <i class="bi bi-card-list me-1"></i> All Events
+          </a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/getbyid" routerLinkActive="active">
+            <i class="bi bi-search me-1"></i> Search 
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/getupcoming" routerLinkActive="active">
+            <i class="bi bi-calendar3-event me-1"></i> Events
+          </a>
+        </li> 
+
+ <li class="nav-item">
+          <a class="nav-link nav-glow" href="/create-event" routerLinkActive="active">
+            <i class="bi bi-calendar-plus me-1"></i> Create an Event
+          </a>
+        </li>
+ <li class="nav-item">
+  <a class="nav-link nav-glow" href="/getbyevent" routerLinkActive="active">
+    <i class="bi bi-journal-text me-1"></i> BookingDetails
+  </a>
+</li> 
+ <li class="nav-item">
+  <a class="nav-link nav-glow" href="/manage-events" routerLinkActive="active">
+    <i class="bi bi-journal-text me-1"></i> ManageEvents
+  </a>
+</li> 
+ <li class="nav-item">
+  <a class="nav-link nav-glow" href="/view-feedback" routerLinkActive="active">
+    <i class="bi bi-journal-text me-1"></i>View Feedbacks
+  </a>
+</li> 
+ <li class="nav-item">
+  <a class="nav-link nav-glow" href="" routerLinkActive="active">
+    <i class="bi bi-journal-text me-1"></i> Logout
+  </a>
+</li> 
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+
+<div class="container mt-5">
+  <h2 class="text-center text-primary fw-bold mb-4 display-6">
+    <i class="bi bi-calendar-plus-fill me-2"></i> Create New Event
+  </h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <form [formGroup]="eventForm" (ngSubmit)="submitForm()" 
+            class="p-4 border border-2 rounded-4 shadow glass-card">
+
+        <!-- Event Name -->
+        <div class="mb-3">
+          <label class="form-label text-secondary fw-semibold">Event Name</label>
+          <input type="text" class="form-control" formControlName="eventName" placeholder="Enter event name" required>
+        </div>
+
+        <!-- Category -->
+        <div class="mb-3">
+          <label class="form-label text-secondary fw-semibold">Category</label>
+          <select class="form-select" formControlName="category" required>
+            <option value="" disabled selected>Select a category</option>
+            <option value="Dance">Dance</option>
+            <option value="Drama">Drama</option>
+            <option value="Musical Night">Musical Night</option>
+            <option value="Birthday">Birthday</option>
+            <option value="Technical">Tech Event</option>
+          </select>
+          <div *ngIf="eventForm.get('category')?.invalid && eventForm.get('category')?.touched" class="text-danger mt-1">
+            Please select a category.
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+          <label class="form-label text-secondary fw-semibold">Description</label>
+          <textarea class="form-control" formControlName="description" rows="3" placeholder="Enter a short description" required></textarea>
+        </div>
+
+        <!-- Limit -->
+        <div class="mb-3">
+          <label class="form-label text-secondary fw-semibold">Attendee Limit</label>
+          <input type="number" class="form-control" formControlName="limit" placeholder="e.g., 50"
+                 [ngClass]="{ 'is-invalid': eventForm.get('limit')?.invalid && eventForm.get('limit')?.touched }" required>
+          <div *ngIf="eventForm.get('limit')?.hasError('min') && eventForm.get('limit')?.touched" class="text-danger mt-1">
+            Limit must be greater than 10.
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="mb-3">
+          <label class="form-label text-secondary fw-semibold">Location</label>
+          <input type="text" class="form-control" formControlName="location" placeholder="Venue or address" required>
+        </div>
+
+        <!-- Date -->
+        <div class="mb-3">
+          <label class="form-label text-secondary fw-semibold">Event Date</label>
+          <input type="date" class="form-control" formControlName="date"
+                 [ngClass]="{ 'is-invalid': eventForm.get('date')?.invalid && eventForm.get('date')?.touched }">
+          <div *ngIf="eventForm.get('date')?.hasError('pastDate') && eventForm.get('date')?.touched" class="text-danger mt-1">
+            Date cannot be in the past.
+          </div>
+        </div>
+
+        <!-- Start Time -->
+        <div class="mb-3">
+          <label class="form-label text-secondary fw-semibold">Start Time</label>
+          <input type="time" class="form-control" formControlName="startTime" required>
+        </div>
+
+        <!-- End Time -->
+        <div class="mb-4">
+          <label class="form-label text-secondary fw-semibold">End Time</label>
+          <input type="time" class="form-control" formControlName="endTime" required>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary w-100 py-2 rounded-pill" [disabled]="eventForm.invalid">
+          <i class="bi bi-check-circle-fill me-2"></i> Create Event
+        </button>
+
+        <!-- Messages -->
+        <div class="text-center mt-3">
+          <p class="text-success fw-semibold" *ngIf="successMessage">
+            <i class="bi bi-check2-circle me-1"></i> {{ successMessage }}
+          </p>
+          <p class="text-danger fw-semibold" *ngIf="errorMessage">
+            <i class="bi bi-exclamation-circle me-1"></i> {{ errorMessage }}
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

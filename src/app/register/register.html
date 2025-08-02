@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg glassmorphic-nav shadow-lg px-4 py-3 rounded-bottom-4">
+  <div class="container-fluid">
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold fs-4 text-gradient d-flex align-items-center" href="/">
+      <i class="bi bi-stars me-2 fs-4"></i> Event Portal
+    </a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav gap-3 text-center">
+       
+        <li class="nav-item">
+          <a class="nav-link nav-glow px-3 py-2 rounded-3" href="/login" routerLinkActive="active">
+            <i class="bi bi-box-arrow-in-right me-1"></i> Login
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<form #form="ngForm">
+  <h3>Register to Event Pro</h3>
+  <label>UserId:</label>
+  <input type="text" name="userid" [(ngModel)]="userid">
+  
+  <label>Username:</label>
+  <input type="text" name="username" [(ngModel)]="username"
+         required minlength="8" pattern="^[^\s]+$" #usernameInput="ngModel">
+  <div *ngIf="usernameInput.invalid && usernameInput.touched">
+   <div *ngIf="usernameInput.errors?.['required']">Username is required.</div>
+
+    <div *ngIf="usernameInput.errors?.['minlength']">Minimum 8 characters.</div>
+    <div *ngIf="usernameInput.errors?.['pattern']">No spaces allowed.</div>
+  </div>
+
+  
+  <label>Password:</label>
+  <input type="password" name="password" [(ngModel)]="password"
+         required pattern="^(?=.*\d).{8,}$" #passwordInput="ngModel">
+  <div *ngIf="passwordInput.invalid && passwordInput.touched">
+    <div *ngIf="passwordInput.errors?.['required']">Password is required.</div>
+    <div *ngIf="passwordInput.errors?.['pattern']">
+      Must be at least 8 characters with at least one number.
+    </div>
+  </div>
+
+  
+  <label>Email:</label>
+  <input type="email" name="email" [(ngModel)]="email"
+         required pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$" #emailInput="ngModel">
+  <div *ngIf="emailInput.invalid && emailInput.touched">
+    <div *ngIf="emailInput.errors?.['required']">Email is required.</div>
+    <div *ngIf="emailInput.errors?.['pattern']">Must be a valid email.</div>
+  </div>
+
+  <label for="role">Select Role:</label>
+<select name="role" [(ngModel)]="role" required>
+  <option value="" disabled selected>Select your role</option>
+  <option value="user">User</option>
+  <option value="organizer">Organizer</option>
+ 
+</select>
+
+
+
+
+  <button [disabled]="form.invalid" (click)="onSubmit()">Submit</button>
+
+
+   <p *ngIf="registrationSuccess" class="success-message">
+ Registered successfully! <a href="/login">You can login now</a>.
+</p>
+
+</form>

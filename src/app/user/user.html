@@ -1,0 +1,93 @@
+<nav class="navbar navbar-expand-lg bg-transparent shadow-lg px-4 py-3 glassmorphic-nav">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold fs-4 text-gradient d-flex align-items-center" href="/user">
+      <i class="bi bi-stars me-2 fs-4"></i> Event Portal
+    </a>
+
+    <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav gap-2 text-center">
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/register" routerLinkActive="active">
+            <i class="bi bi-pencil-square me-1"></i> Register For Event
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/user-events" routerLinkActive="active">
+            <i class="bi bi-card-list me-1"></i> All Events
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/searchuser" routerLinkActive="active">
+            <i class="bi bi-search me-1"></i> Search 
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/upcominguser" routerLinkActive="active">
+            <i class="bi bi-calendar3-event me-1"></i> Upcoming Events
+          </a>
+        </li> 
+            <li class="nav-item">
+  <a class="nav-link nav-glow" href="/feedback" routerLinkActive="active">
+    <i class="bi bi-journal-text me-1"></i> Submit feedback
+  </a>
+</li>
+ <li class="nav-item">
+  <a class="nav-link nav-glow" href="/view-feedbacks" routerLinkActive="active">
+    <i class="bi bi-journal-text me-1"></i>View Feedbacks
+  </a>
+</li> 
+<li>
+<a class="nav-link nav-glow" href="/bookinguser" routerLinkActive="active">
+    <i></i> BookingDetails
+  </a> 
+</li>
+
+      <li class="nav-item">
+  <a class="nav-link nav-glow" href="#" data-bs-toggle="modal" data-bs-target="#profileModal">
+    <i class="bi bi-person-circle me-1"></i> Profile
+  </a>
+</li> 
+         <li class="nav-item">
+  <a class="nav-link nav-glow" href="" routerLinkActive="active">
+    <i class="bi bi-journal-text me-1"></i> Logout
+  </a>
+</li>
+   
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<app-landingpage></app-landingpage>
+<!-- Profile Modal -->
+<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow-lg">
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title fw-bold" id="profileModalLabel">User Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <i class="bi bi-person-circle fs-1 text-primary mb-3"></i>
+        <p><strong>ID:</strong> {{ user?.userId }}</p>
+        <p><strong>Username:</strong> {{ user?.username }}</p>
+        <p><strong>Email:</strong> {{ user?.email }}</p>
+        <p><strong>Role:</strong> {{ user?.role }}</p>
+      </div>
+      <div class="modal-footer border-top-0">
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<li>
+
+

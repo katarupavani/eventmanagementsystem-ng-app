@@ -1,0 +1,32 @@
+<!-- Trigger Button -->
+<a class="nav-link nav-glow" href="#" data-bs-toggle="modal" data-bs-target="#profileModal">
+  <i class="bi bi-person-circle me-1"></i> Profile
+</a>
+
+<!-- Profile Modal -->
+<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow-lg profile-modal">
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title fw-bold text-gradient" id="profileModalLabel">
+          {{ user?.role === 'organizer' ? 'Organizer Profile' : 'User Profile' }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <i class="bi bi-person-circle fs-1 text-primary mb-3"></i>
+        <div *ngIf="user; else loading">
+          <p><strong>ID:</strong> {{ user.userId }}</p>
+          <p><strong>Username:</strong> {{ user.username }}</p>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+        </div>
+        <ng-template #loading>
+          <p class="loading-message">Loading user profile...</p>
+        </ng-template>
+      </div>
+      <div class="modal-footer border-top-0 justify-content-center">
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+<nav class="navbar navbar-expand-lg bg-transparent shadow-lg px-4 py-3 glassmorphic-nav">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold fs-4 text-gradient d-flex align-items-center" href="/user">
+      <i class="bi bi-stars me-2 fs-4"></i> Event Portal
+    </a>
+
+    <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav gap-2 text-center">
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/register" routerLinkActive="active">
+            <i class="bi bi-pencil-square me-1"></i> Register For Event
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/user-events" routerLinkActive="active">
+            <i class="bi bi-card-list me-1"></i> All Events
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/searchuser" routerLinkActive="active">
+            <i class="bi bi-search me-1"></i> Search 
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/upcominguser" routerLinkActive="active">
+            <i class="bi bi-calendar3-event me-1"></i> Upcoming Events
+          </a>
+        </li> 
+            <li class="nav-item">
+  <a class="nav-link nav-glow" href="/feedback" routerLinkActive="active">
+    <i class="bi bi-journal-text me-1"></i> Submit feedback
+  </a>
+</li>
+ <li class="nav-item">
+  <a class="nav-link nav-glow" href="/view-feedbacks" routerLinkActive="active">
+    <i class="bi bi-journal-text me-1"></i>View Feedbacks
+  </a>
+</li> 
+<li>
+<a class="nav-link nav-glow" href="/bookinguser" routerLinkActive="active">
+    <i></i> BookingDetails
+  </a> 
+</li>
+
+ 
+         <li class="nav-item">
+  <a class="nav-link nav-glow" href="" routerLinkActive="active">
+    <i class="bi bi-journal-text me-1"></i> Logout
+  </a>
+</li>
+   
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="min-vh-100 d-flex justify-content-center align-items-center" style="background: linear-gradient(to right, #83a4d4, #b6fbff);">
+  <div class="container" style="max-width: 450px;">
+    <div class="glass-card p-4 rounded-4 shadow-lg">
+      <h3 class="text-center mb-4 fw-bold text-primary">📅 Register Event Booking</h3>
+
+      <!-- Alerts -->
+      <div *ngIf="successMessage" class="alert alert-success text-center" role="alert">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger text-center" role="alert">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Form -->
+      <form [formGroup]="bookingForm" (ngSubmit)="submitBooking()">
+        <!-- Username Input -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">👤 Enter Username</label>
+          <input type="text" formControlName="username" class="form-control rounded-pill px-3" required placeholder="Enter username" />
+        </div>
+
+        <!-- Event Dropdown -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">🆔 Select Event</label>
+          <select formControlName="eventName" class="form-select rounded-pill px-3" required>
+            <option value="" disabled selected>Select an event</option>
+            <option *ngFor="let event of events" [value]="event.eventName">
+              {{ event.eventName }}
+            </option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 rounded-pill fw-bold mt-3">
+          🚀 Register for Event
+        </button>
+      </form>
+
+      <div class="text-center mt-3">
+        <button class="btn btn-outline-secondary rounded-pill px-4" (click)="goBack()">
+          🔙 Back
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

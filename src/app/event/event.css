@@ -1,0 +1,99 @@
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.glassmorphic-nav {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.nav-glow {
+  color: #ffffff;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.nav-glow:hover,
+.nav-glow.router-link-active,
+.nav-glow.active {
+  background: linear-gradient(90deg, #0dcaf0, #6f42c1);
+  color: white !important;
+  box-shadow: 0 0 10px rgba(111, 66, 193, 0.4);
+  transform: translateY(-2px);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #0dcaf0, #6f42c1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+.nav-glow {
+  color: #212529; /* Dark text for white background */
+}
+.nav-glow:hover {
+  background: linear-gradient(90deg, #0dcaf0, #6f42c1);
+  color: white;
+}
+
+/* Glass effect for the form card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 123, 255, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Form controls focus effect */
+.form-control:focus, .form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Input validation style */
+.is-invalid {
+  border-color: #dc3545;
+}
+
+.text-danger {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Gradient text for title */
+.text-primary {
+  background: linear-gradient(90deg, #0d6efd, #6610f2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Button hover effect */
+.btn-primary {
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  border: none;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: scale(1.03);
+  background: linear-gradient(135deg, #6610f2, #0d6efd);
+}
+
+/* Responsive form card padding */
+@media (max-width: 576px) {
+  .glass-card {
+    padding: 1.5rem;
+  }
+}

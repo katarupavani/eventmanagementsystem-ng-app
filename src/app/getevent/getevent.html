@@ -1,0 +1,124 @@
+<nav class="navbar navbar-expand-lg bg-transparent shadow-lg px-4 py-3 glassmorphic-nav">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold fs-4 text-gradient d-flex align-items-center" href="/user">
+      <i class="bi bi-stars me-2 fs-4"></i> Event Portal
+    </a>
+
+    <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav gap-2 text-center">
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/register" routerLinkActive="active">
+            <i class="bi bi-pencil-square me-1"></i> Register For Event
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/user-events" routerLinkActive="active">
+            <i class="bi bi-card-list me-1"></i> All Events
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/searchuser" routerLinkActive="active">
+            <i class="bi bi-search me-1"></i> Search 
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-glow" href="/upcominguser" routerLinkActive="active">
+            <i class="bi bi-calendar3-event me-1"></i> Upcoming Events
+          </a>
+        </li> 
+            <li class="nav-item">
+  <a class="nav-link nav-glow" href="/feedback" routerLinkActive="active">
+    <i class="bi bi-journal-text me-1"></i> Submit feedback
+  </a>
+</li>
+ <li class="nav-item">
+  <a class="nav-link nav-glow" href="/view-feedbacks" routerLinkActive="active">
+    <i class="bi bi-journal-text me-1"></i>View Feedbacks
+  </a>
+</li> 
+<li>
+<a class="nav-link nav-glow" href="/bookinguser" routerLinkActive="active">
+    <i></i> BookingDetails
+  </a> 
+</li>
+
+
+         <li class="nav-item">
+  <a class="nav-link nav-glow" href="" routerLinkActive="active">
+    <i class="bi bi-journal-text me-1"></i> Logout
+  </a>
+</li>
+   
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<h3 class="text-center mt-4 text-gradient display-6 fw-bold">
+  <i class="bi bi-calendar-week me-2"></i>All Events
+</h3>
+
+<div class="container py-4">
+  <div class="carousel-container position-relative">
+
+    <div class="carousel-slide-wrapper">
+      <div 
+        class="carousel-slide"
+        [ngStyle]="{ transform: 'translateX(' + (-currentIndex * 33.333) + '%)' }">
+
+        <div 
+          *ngFor="let event of events; let i = index" 
+          class="carousel-card"
+          [ngClass]="{ 'active': i === currentIndex, 'side': i !== currentIndex }">
+
+          <div class="card glowing-border shadow-lg rounded-4 mx-auto" style="width: 300px;">
+            <img 
+              [src]="getImageForCategory(event.category)" 
+              class="card-img-top rounded-top-4" 
+              alt="Event Image" 
+              style="height: 200px; object-fit: cover;">
+
+            <div class="card-body px-3 py-2 text-center">
+              <h5 class="card-title text-primary fw-bold mb-2">
+                <i class="bi bi-easel-fill me-2"></i>{{ event.eventName }}
+              </h5>
+
+              <ul class="list-unstyled text-dark small mb-2">
+                <li><strong>ID:</strong> {{ event.eventId }}</li>
+                <li><strong>Category:</strong> {{ event.category }}</li>
+                <li><strong>Date:</strong> {{ event.date }}</li>
+                <li><strong>Time:</strong> {{ event.startTime }} - {{ event.endTime }}</li>
+                <li><strong>Location:</strong> {{ event.location }}</li>
+              </ul>
+
+              <!-- <button class="btn btn-gradient btn-sm px-4 mt-1" (click)="registerEvent()">
+                <i class="bi bi-check2-circle me-1"></i>Register
+              </button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-nav">
+      <button (click)="prevSlide()">
+        <i class="bi bi-arrow-left-circle-fill"></i>
+      </button>
+      <button (click)="nextSlide()">
+        <i class="bi bi-arrow-right-circle-fill"></i>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="events.length === 0" class="text-center text-muted mt-5">
+    <i class="bi bi-exclamation-circle me-2"></i>No events available at the moment.
+  </div>
+</div>
